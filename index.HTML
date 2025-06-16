@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schulbuchbestellung – Buchhandlung Graff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h1>Schulbuchbestellung</h1>
+    <p>Bitte füllen Sie das Formular aus und laden Sie ein oder mehrere Bilder Ihrer Schulbuchliste hoch.</p>
+
+    <form action="send_mail.php" method="POST" enctype="multipart/form-data">
+      <!-- Wichtiger Hinweis für Backend: send_mail.php muss serverseitig Mailversand (z. B. via PHPMailer) unterstützen -->
+
+      <div class="row">
+        <div class="col-half">
+          <label for="vorname">Vorname</label>
+          <input type="text" id="vorname" name="vorname" required placeholder="Vorname eingeben" aria-required="true" />
+        </div>
+        <div class="col-half">
+          <label for="nachname">Nachname</label>
+          <input type="text" id="nachname" name="nachname" required placeholder="Nachname eingeben" aria-required="true" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-half">
+          <label for="strasse">Straße</label>
+          <input type="text" id="strasse" name="strasse" required placeholder="Straße eingeben" aria-required="true" />
+        </div>
+        <div class="col-half">
+          <label for="hausnummer">Hausnummer</label>
+          <input type="text" id="hausnummer" name="hausnummer" required placeholder="Hausnummer eingeben" aria-required="true" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-half">
+          <label for="plz">PLZ</label>
+          <input type="text" id="plz" name="plz" required placeholder="PLZ eingeben" aria-required="true" />
+        </div>
+        <div class="col-half">
+          <label for="ort">Ort</label>
+          <input type="text" id="ort" name="ort" required placeholder="Ort eingeben" aria-required="true" />
+        </div>
+      </div>
+
+      <label for="birthdate">Geburtsdatum (nur bei Versand notwendig)</label>
+      <input type="date" id="birthdate" name="birthdate" required aria-required="true" />
+
+      <fieldset>
+        <legend>Wie möchten Sie Ihre Bestellung erhalten?</legend>
+        <div class="radio-group">
+          <label class="radio-button">
+            <input type="radio" name="lieferung" value="abholen" required />
+            <span class="radio-text">Abholen</span>
+          </label>
+          <label class="radio-button">
+            <input type="radio" name="lieferung" value="senden" required />
+            <span class="radio-text">Senden</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <label for="email">E-Mail (nur bei Abholung notwendig)</label>
+      <input type="email" id="email" name="email" placeholder="E-Mail eingeben" />
+
+      <label for="nachricht">Nachricht</label>
+      <textarea id="nachricht" name="nachricht" rows="5" placeholder="Ihre Nachricht (optional)"></textarea>
+
+      <label for="bilder">Schulbuchliste als Bild hochladen</label>
+      <!-- Hinweis: Nur Bildformate sind erlaubt (image/*); Prüfung serverseitig zusätzlich empfohlen -->
+      <div class="file-upload-wrapper">
+        <input type="file" id="bilder" name="bilder[]" accept="image/*" multiple required />
+        <span class="file-upload-text">Dateien auswählen oder hierher ziehen</span>
+      </div>
+
+      <button type="submit">Bestellung absenden</button>
+    </form>
+  </div>
+</body>
+</html>
